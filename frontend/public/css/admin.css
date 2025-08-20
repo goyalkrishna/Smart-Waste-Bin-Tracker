@@ -1,0 +1,958 @@
+/* --- Professional & Complete Admin CSS --- */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #4f46e5;
+  --bg-color: #f4f7fe;
+  --surface-color: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --sidebar-width: 260px;
+}
+
+body.dark-mode {
+  --bg-color: #111827;
+  --surface-color: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --border-color: #374151;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- Layout --- */
+.admin-layout {
+  display: flex;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--surface-color);
+  border-right: 1px solid var(--border-color);
+  padding: 20px;
+  z-index: 1000;
+}
+
+.main-content-wrapper {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+}
+
+/* --- Navbar --- */
+.navbar {
+  height: 70px;
+  padding: 0 30px;
+  background-color: var(--surface-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.project-name {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--text-primary); /* "Admin Panel" ke liye */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* "EcoVision" aur "Admin Panel" ke beech space */
+}
+
+/* Gradient effect ke liye naya style */
+.project-name span {
+  font-weight: bolder;
+  /* 1. Gradient background define karein */
+  background: linear-gradient(90deg, var(--primary-color), #60a5fa);
+
+  /* 2. Background ko text ke shape mein clip karein */
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  /* 3. Text ka color transparent karein taaki background dikhe */
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* --- Sidebar --- */
+.sidebar-header h2 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin: 10px 0 30px;
+  text-align: center;
+}
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-menu li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.sidebar-menu li:hover,
+.sidebar-menu li.active {
+  background-color: #eef2ff;
+  color: var(--primary-color);
+}
+body.dark-mode .sidebar-menu li:hover,
+body.dark-mode .sidebar-menu li.active {
+  background-color: #3730a3;
+  color: white;
+}
+
+/* --- Professional User Profile Dropdown (Corrected) --- */
+.admin-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding-bottom: 10px; /* ✅ NEW: Invisible space neeche add kiya hai */
+  margin-bottom: -10px; /* Layout ko balance karne ke liye */
+}
+
+.admin-profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.admin-profile span i {
+  font-size: 0.8rem;
+  margin-left: 5px;
+  transition: transform 0.2s ease;
+}
+
+.admin-profile span i {
+  font-size: 0.8rem;
+  margin-left: 5px;
+  transition: transform 0.2s ease;
+}
+.admin-profile:hover span i {
+  transform: rotate(180deg);
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* ✅ FIX: Ab yeh bilkul neeche se shuru hoga */
+  right: 0;
+  background-color: var(--surface-color);
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 160px;
+  overflow: hidden;
+  z-index: 1001;
+  animation: fadeIn 0.2s ease-out; /* Optional: Sundar animation */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-profile:hover .dropdown-menu {
+  display: block;
+}
+
+#user-name {
+  font-size: 1.2rem;
+  font-weight: bolder;
+}
+
+.avatar-initial {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: var(--text-secondary);
+}
+
+.dropdown-menu a:hover {
+  background-color: #f3f4f6;
+  color: var(--primary-color);
+}
+
+body.dark-mode .dropdown-menu a:hover {
+  background-color: #374151;
+}
+
+/* --- Improved Theme Switcher --- */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider.round {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 26px;
+}
+.slider.round:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider.round {
+  background-color: var(--primary-color);
+}
+input:checked + .slider.round:before {
+  transform: translateX(24px);
+}
+
+/* --- Add these new styles and replace old content styles in admin.css --- */
+
+/* Main Content Area */
+.content-area {
+  padding: 30px;
+}
+
+.content-area h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+/* --- Stat Cards --- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Main container for the cards */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* The main card style with Glassmorphism effect */
+.stat-card {
+  /* Frosted glass effect */
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  /* ✅ FIX: Smooth animation for hover */
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+
+  /* Staggered load animation */
+  opacity: 0;
+  animation: card-appear 0.5s ease-out forwards;
+}
+
+/* Staggered animation delay for each card */
+.stats .stat-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.stats .stat-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.stats .stat-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.stats .stat-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes card-appear {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ✅ UPDATED: Hover effect */
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.8); /* Thoda aur visible hover */
+}
+
+/* Icon styling with gradient */
+.card-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: white;
+  /* Gradient background for icons */
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--primary-light)
+  );
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+.card-info h3 {
+  margin: 0 0 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.card-info p {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Dark mode adjustments */
+body.dark-mode .stat-card {
+  background: rgba(31, 41, 55, 0.6); /* Dark glass */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+body.dark-mode .stat-card:hover {
+  background-color: rgba(31, 41, 55, 0.8);
+}
+
+/* --- Charts Section --- */
+.charts {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.chart-card {
+  background: var(--surface-color);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.chart-card h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+/* --- Responsive for Charts --- */
+@media (max-width: 992px) {
+  .charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Paste this code at the end of your admin.css file */
+
+/* --- Main Table Container Card --- */
+.table-container.card {
+  padding: 0; /* Remove default padding to allow table to fit perfectly */
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+}
+
+.table-container h1 {
+  padding: 1.5rem 1.5rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* Removes space between cells */
+  text-align: left;
+}
+
+/* --- Table Header (th) --- */
+thead th {
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--border-color);
+  background-color: var(--hover-bg);
+}
+
+/* --- Table Body (tbody) & Rows (tr/td) --- */
+tbody td {
+  padding: 1rem 1.5rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-color-light);
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+/* Remove border from the last row for a clean look */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Add a hover effect to rows for better user experience */
+tbody tr:hover {
+  background-color: var(--hover-bg);
+}
+
+/* --- Role Tags (Admin/Staff) Styling --- */
+.role-tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem; /* Makes it pill-shaped */
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.role-tag.role-admin {
+  background-color: #dcfce7; /* Light Green */
+  color: #16a34a;
+}
+
+.role-tag.role-staff {
+  background-color: #e0e7ff; /* Light Blue */
+  color: #4338ca;
+}
+
+body.dark-mode .role-tag.role-admin {
+  background-color: #14532d;
+  color: #86efac;
+}
+
+body.dark-mode .role-tag.role-staff {
+  background-color: #312e81;
+  color: #a5b4fc;
+}
+
+/* --- Action Buttons (Edit/Delete) --- */
+.actions {
+  text-align: right; /* Aligns buttons to the right */
+}
+
+thead th:last-child {
+  padding-right: 35px;
+  text-align: right;
+}
+
+.btn-action {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.6rem;
+  margin: 0 0.2rem;
+  border-radius: 8px; /* Slightly rounded corners */
+  color: var(--text-light);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-action i {
+  font-size: 1rem;
+}
+
+.btn-action:hover {
+  background-color: var(--border-color);
+  color: var(--primary-color);
+}
+
+/* Specific hover color for delete buttons */
+.btn-action.delete-user:hover,
+.btn-action.delete-bin:hover {
+  color: #ef4444; /* Red color */
+}
+
+/* Paste this at the end of your admin.css file */
+
+/* --- Page Header (Search/Add User) --- */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 0 0.75rem;
+}
+
+.search-bar i {
+  color: var(--text-light);
+}
+
+.search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0.75rem 0.5rem;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.btn.btn-primary {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn.btn-primary:hover {
+  background-color: #4338ca;
+}
+
+/* --- User Avatar and Name in Table --- */
+.user-info-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.avatar-initial {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e7ff;
+  color: #4338ca;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+body.dark-mode .avatar-initial {
+  background-color: #312e81;
+  color: #a5b4fc;
+}
+
+/* Add this to the end of your admin.css file */
+
+/* --- Add User Modal --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 24, 39, 0.6); /* Darker overlay */
+  backdrop-filter: blur(4px); /* Frosted glass effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0; /* Start hidden */
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+  display: flex; /* Enable Flexbox for layout */
+  flex-direction: column; /* Stack children vertically */
+  gap: 1.5rem; /* Spacing between direct children */
+}
+
+.modal-overlay:not(.hidden) .modal-content {
+  transform: scale(1);
+}
+
+.modal-content h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.modal-content h2 i {
+  color: var(--primary-color);
+}
+
+.form-group {
+  margin-bottom: 1.25rem; /* Consistent spacing between each form group */
+  text-align: left; /* Aligns the label text to the left */
+}
+
+.form-group label {
+  display: block; /* Makes the label take its own line */
+  margin-bottom: 0.5rem; /* Space between label and input field */
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  box-sizing: border-box; /* Important for consistent sizing */
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color-light);
+  margin: 1.5rem 0;
+}
+
+.security-note {
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end; /* Push buttons to the right */
+  gap: 0.75rem;
+  margin-top: 1rem; /* Add some space above the buttons */
+}
+
+.btn-secondary {
+  background-color: var(--border-color);
+  color: var(--text-color);
+  border: none;
+  padding: 0.8rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--border-color-light);
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+.error-message.hidden {
+  display: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(
+    --primary-color-darker
+  ); /* You might want to define a darker shade in your CSS variables */
+}
+
+/* --- Loading Spinner for Button --- */
+.btn-primary .spinner {
+  display: none; /* Hidden by default */
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 0.8s linear infinite;
+}
+
+.btn-primary.loading .spinner {
+  display: block; /* Show spinner when loading */
+}
+
+.btn-primary.loading .btn-text {
+  display: none; /* Hide text when loading */
+}
+
+/* Adjust hr styling if needed */
+hr {
+  border-top: 1px solid var(--border-color-light);
+  margin: 1rem 0;
+}
+
+/* Adjust security note styling if needed */
+.security-note {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: -0.25rem;
+  margin-bottom: 1rem;
+}
+
+/*  CSS for Status Tag Colors */
+
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  color: #fff;
+}
+
+.status.status-high {
+  background-color: #ef4444; /* Red */
+}
+
+.status.status-medium {
+  background-color: #f59e0b; /* Yellow/Orange */
+}
+
+.status.status-low {
+  background-color: #22c55e; /* Green */
+}
+
+/* ✅ ADD THIS CSS for Maintenance Status */
+
+/* This style will apply to the entire row */
+tr.maintenance-row {
+  opacity: 0.6;
+  background-color: var(--hover-bg);
+}
+
+tr.maintenance-row td {
+  text-decoration: line-through;
+}
+
+/* Add a new color for the status tag */
+.status.status-maintenance {
+  background-color: #6b7280; /* Gray */
+}
+
+/* Adds space above the "Manage Users" and "Manage Bins" headers */
+.content-tab > .page-header {
+  margin-top: 20px;
+}
+
+.content-tab {
+  /* Bas yeh sunishchit karein ki har section ke beech mein thodi jagah ho */
+  padding-top: 40px;
+}
+
+/* Add this to admin.css */
+
+/* Alert Type Colors */
+.status.status-critical {
+  background-color: #ef4444;
+} /* Red */
+.status.status-warning {
+  background-color: #f59e0b;
+} /* Orange */
+.status.status-info {
+  background-color: #3b82f6;
+} /* Blue */
+
+/* Row style for resolved alerts */
+.alert-row-resolved {
+  opacity: 0.6;
+  background-color: var(--hover-bg);
+}
+.alert-row-resolved td {
+  text-decoration: line-through;
+}
+
+/* ✅ ADD THIS CSS for the notification badge */
+.nav-link {
+  position: relative; /* Needed for badge positioning */
+}
+
+.notification-badge {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background-color: #ef4444; /* Red */
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ✅ FADE OUT ANIMATION */
+
+/* Yeh class hum JavaScript se add karenge */
+.alert-row-fade-out {
+  animation: fadeOutDown 0.8s forwards;
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* ✅ NAYE STATUS TAGS AUR TABLE CELL KE LIYE CSS */
+
+/* Status Colors */
+.status.status-pending {
+  background-color: #f59e0b;
+} /* Orange */
+.status.status-in-progress,
+.status.status-approved {
+  background-color: #3b82f6;
+} /* Blue */
+.status.status-resolved,
+.status.status-completed {
+  background-color: #22c55e;
+} /* Green */
+
+/* Description cell ko lamba hone par aache se dikhaye */
+.description-cell {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}

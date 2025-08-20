@@ -1,0 +1,207 @@
+/* Gradient Animated Background */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(270deg, #8ecae6, #b5e48c, #ffd6a5, #ffcad4);
+  background-size: 800% 800%;
+  animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Particle system */
+.ocean-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  opacity: 0;
+  animation: particle-float 15s linear infinite;
+}
+
+@keyframes particle-float {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(0) scale(0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(100px) scale(1);
+  }
+}
+
+/* Signup container */
+.signup-container {
+  width: 330px;
+  max-width: 90%;
+  padding: 50px 60px;
+  background: #d1f9e0;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  /* Added initial entrance animation */
+  animation: containerEntrance 1s ease-out;
+}
+
+@keyframes containerEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo */
+.brand-logo {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  background: #064663;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Titles */
+.signup-title {
+  font-size: 2rem;
+  color: #064663;
+  margin-bottom: 8px;
+}
+.signup-subtitle {
+  color: #064663;
+  margin-bottom: 24px;
+}
+
+/* Inputs */
+.form-input {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 1px solid #064663;
+  font-size: 1rem;
+  outline: none;
+  margin-bottom: 20px; /* This creates the equal spacing */
+  position: relative; /* Needed for the eye icon */
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  border-color: #ff6f61;
+  box-shadow: 0 0 8px rgba(255, 111, 97, 0.4);
+}
+
+/* Password toggle */
+.form-input {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 1px solid #064663;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.toggle-password1 {
+  position: absolute;
+  right: 70px;
+  top: 55.3%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.2rem;
+  color: #064663;
+}
+
+.toggle-password2 {
+  position: absolute;
+  right: 70px;
+  top: 64.7%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.2rem;
+  color: #064663;
+}
+
+/* Remember me */
+.remember-me {
+  text-align: left;
+  margin-bottom: 20px;
+  color: #064663;
+  font-size: 0.95rem;
+}
+.remember-me input {
+  margin-right: 8px;
+}
+
+/* Button */
+.signup-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  background: #064663;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.signup-button:hover {
+  background: #ff6f61;
+}
+
+.termsconditions {
+  text-decoration: none;
+}
+
+.forgot-password {
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  .signup-container {
+    padding: 70px 32px;
+  }
+}

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoVision - A Greener Tomorrow</title>
+    <link rel="stylesheet" href="/css/home.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <h1><span>Eco</span>Vision</h1>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#trusted-by">Trusted By</a></li>
+          <li><a href="#FAQ">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+          <a href="/login" class="btn-login">Login</a>
+          <a href="/signup" class="btn-signup">Sign Up</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section --> 
+    <section id="home" class="hero">
+      <div class="hero-container">
+        <!-- Left Side: Content -->
+        <div class="hero-content fade-in">
+          <h1>Rethink Waste. <br />Reimagine <span>Cleanliness.</span></h1>
+          <p>
+            EcoVision is pioneering the future of urban hygiene with an intelligent,
+            data-driven platform. We empower cities and campuses to manage waste
+            smarter, not harder.
+          </p>
+          <div class="hero-buttons">
+            <a href="/signup" class="btn-primary">Get Started</a>
+            <a href="#features" class="btn-secondary">Explore Features</a>
+          </div>
+        </div>
+
+        <!-- Right Side: Animated Graphic -->
+        <div class="hero-visual fade-in-delay">
+          <div class="visual-card">
+            <div class="card-header">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="card-body">
+              <p class="card-title">Live Bin Status</p>
+              <div class="bin-animation">
+                <div class="bin-bar-container">
+                  <div class="bin-bar b1"></div>
+                  <span>BIN-001</span>
+                </div>
+                <div class="bin-bar-container">
+                  <div class="bin-bar b2"></div>
+                  <span>BIN-002</span>
+                </div>
+                <div class="bin-bar-container">
+                  <div class="bin-bar b3"></div>
+                  <span>BIN-003</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- About Us Section -->
+    <section id="about" class="fade-in">
+      <div class="about-container">
+        <!-- Left Pillar: Mission -->
+        <div class="about-pillar mission" data-aos="fade-right">
+          <div class="pillar-icon">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3>Our Mission</h3>
+          <p>
+            To engineer a sustainable future by deploying smart, eco-friendly
+            solutions that harmonize technology with nature for cleaner
+            communities.
+          </p>
+        </div>
+
+        <!-- Center Hub with Connecting Lines -->
+        <div class="about-central-hub" data-aos="zoom-in">
+          <div class="line-top"></div>
+          <div class="hub-content">
+            <h2>About EcoVision</h2>
+          </div>
+          <div class="line-bottom"></div>
+        </div>
+
+        <!-- Right Pillars: Vision & Story -->
+        <div class="about-right-pillars">
+          <div class="about-pillar vision" data-aos="fade-left">
+            <div class="pillar-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3>Our Vision</h3>
+            <p>
+              To be the global leader in green innovation, inspiring a worldwide
+              shift towards data-driven, eco-conscious decisions in urban life.
+            </p>
+          </div>
+          <div class="about-pillar story" data-aos="fade-left" data-aos-delay="200">
+            <div class="pillar-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <h3>Our Story</h3>
+            <p>
+              Born from a passion to solve urban waste challenges, EcoVision began
+              as a small idea and has evolved into a powerful movement for change.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Time Line Section -->
+    <section class="timeline">
+      <h2 class="timeline-title">Our Journey</h2>
+      <div class="timeline-container">
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-icon">
+            <i class="fas fa-city"></i>
+          </div>
+          <div class="timeline-content">
+            <h3>2018</h3>
+            <p>
+              Rapid urbanization led to overflowing waste bins in campuses and
+              public areas, causing unhygienic surroundings and unnecessary
+              manual checks.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item right" data-aos="fade-left">
+          <div class="timeline-icon">
+            <i class="far fa-lightbulb"></i>
+          </div>
+          <div class="timeline-content">
+            <h3>2020</h3>
+            <p>
+              The concept of <strong>EcoVision</strong> emerged – a system using
+              sensors to monitor real-time bin levels and notify staff when bins
+              are nearly full.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <div class="timeline-content">
+            <h3>2022</h3>
+            <p>
+              A basic prototype was built using
+              <strong>ultrasonic sensors and IoT modules</strong>. Early testing
+              showed promising results in reducing manual efforts.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item right" data-aos="fade-left">
+          <div class="timeline-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="timeline-content">
+            <h3>2023</h3>
+            <p>
+              The system was implemented in a small campus area. The results
+              were outstanding – staff reported
+              <strong>30% less time spent</strong> on checking bins.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <div class="timeline-content">
+            <h3>2025 and Beyond</h3>
+            <p>
+              EcoVision is now scaling for
+              <strong>universities, tech parks, and smart cities</strong> –
+              bringing efficiency and sustainability together.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="fade-in">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Our simple, three-step process for a smarter, cleaner future.</p>
+        
+        <div class="how-it-works-container">
+          <!-- Step 1 -->
+          <div class="step-item" data-aos="fade-right">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fas fa-wifi"></i></div>
+              <h3>Monitor</h3>
+              <p>High-precision sensors embedded in each bin track fill-levels 24/7, sending encrypted data to our secure cloud.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-item step-item-right" data-aos="fade-left">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fas fa-bell"></i></div>
+              <h3>Alert</h3>
+              <p>The moment a bin reaches its preset critical threshold, our system sends instant, actionable notifications to your team.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-item" data-aos="fade-right">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <div class="step-icon"><i class="fas fa-route"></i></div>
+              <h3>Optimize</h3>
+              <p>Our AI analyzes the data to generate the most efficient collection routes, saving you valuable time, fuel, and operational costs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Key Features -->
+    <section id="features" class="fade-in">
+      <div class="container">
+        <h2 class="section-title">The EcoVision Advantage</h2>
+        <p class="section-subtitle">Discover the powerful features that make our platform the smartest choice for waste management.</p>
+
+        <div class="features-container">
+          <!-- Left Side: Features List -->
+          <div class="features-list" data-aos="fade-right">
+            <!-- Feature 1 -->
+            <div class="feature-item active" data-image="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+              <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+              <div class="feature-text">
+                <h3>Real-Time Dashboard</h3>
+                <p>Visualize bin statuses across your entire campus on an interactive map.</p>
+              </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="feature-item" data-image="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+              <div class="feature-icon"><i class="fas fa-bell"></i></div>
+              <div class="feature-text">
+                <h3>Instant Notifications</h3>
+                <p>Get email or push notifications the moment a bin needs service.</p>
+              </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="feature-item" data-image="https://images.unsplash.com/photo-1587401048167-d1a4d727abd6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+              <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+              <div class="feature-text">
+                <h3>Data-Driven Reports</h3>
+                <p>Generate reports on collection times and waste volume for better planning.</p>
+              </div>
+            </div>
+            <!-- Feature 4 -->
+            <div class="feature-item" data-image="https://img.freepik.com/free-vector/tour-navigator-abstract-concept-illustration_335657-2491.jpg?semt=ais_hybrid&w=740&q=80">
+              <div class="feature-icon"><i class="fas fa-tools"></i></div>
+              <div class="feature-text">
+                <h3>Maintenance Tracking</h3>
+                <p>Report and manage damaged bins directly through the platform.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side: Image Showcase -->
+          <div class="feature-image-showcase" data-aos="fade-left">
+            <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?q=80&w=2070&auto=format&fit=crop" id="feature-image" alt="Feature Image">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Trusted by Colleges Section -->
+    <section class="trusted-section" id="trusted-by">
+      <div class="container">
+        <h2 class="trusted-title">🎓 Trusted by Leading Institutions</h2>
+        <p class="trusted-subtitle">
+          EcoVision is proudly implemented in top colleges and universities to
+          create cleaner and smarter campuses.
+        </p>
+
+        <div class="trusted-grid">
+          <!-- College 1 -->
+          <div class="trusted-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4f/National_Institute_of_Technology%2C_Tiruchirappalli.svg/1200px-National_Institute_of_Technology%2C_Tiruchirappalli.svg.png"
+              alt="NIT TRICHY Logo"
+            />
+            <h3>NIT TRICHY</h3>
+          </div>
+
+          <!-- College 2 -->
+          <div class="trusted-item">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9WmG0184NwElr4aC4ENckks2ze-Md446Qpw&s"
+              alt="IIT MADRAS Logo"
+            />
+            <h3>IIT MADRAS</h3>
+          </div>
+
+          <!-- College 3 -->
+          <div class="trusted-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/BITS_Pilani-Logo.svg/1200px-BITS_Pilani-Logo.svg.png"
+              alt="BITS Pilani Logo"
+            />
+            <h3>BITS Pilani</h3>
+          </div>
+
+          <!-- College 4 -->
+          <div class="trusted-item">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/8/84/University_of_Delhi.png"
+              alt="DELHI UNIVERSITY Logo"
+            />
+            <h3>DELHI UNIVERSITY</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="fade-in">
+      <h2 class="section-title">What Our Users Say</h2>
+      <div class="testimonials-container">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <div class="testimonial-image">
+            <img
+              src="https://assets-lp.aiease.ai/ea-assets/headshot-generator/AI-generated-male-headshot-example-from-AI-Ease-2.webp"
+              alt="Alex Johnson"
+            />
+          </div>
+          <div class="testimonial-text">
+            <p>
+              "EcoVision transformed our campus logistics. We're saving over 20
+              hours a week in labor costs!"
+            </p>
+            <div class="testimonial-author">
+              - Alex Johnson, Maintenance Head
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <div class="testimonial-image">
+            <img
+              src="https://cdn.pixabay.com/photo/2025/04/29/11/46/ai-generated-9567003_1280.jpg"
+              alt="Maria Garcia"
+            />
+          </div>
+          <div class="testimonial-text">
+            <p>
+              ""Our campus is cleaner and more hygienic than ever. Really a big
+              thanks to EcoVision.""
+            </p>
+            <div class="testimonial-author">
+              - Maria Garcia, Sustainability Officer
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet Our Team Section -->
+    <section class="team">
+      <div class="team-header">
+        <h2>Our Team</h2>
+        <p>Meet the passionate minds driving our vision forward</p>
+      </div>
+
+      <div class="team-container">
+        <!-- Member 1 -->
+        <div class="team-card">
+          <div class="card-image">
+            <img src="/uploads/Krishna.jpg" alt="Krishna Image" />
+          </div>
+          <div class="card-info">
+            <h3>Krishna Goyal</h3>
+            <p class="role">Founder & CEO</p>
+            <p class="bio">
+              A passionate environmentalist with a vision to build smarter,
+              cleaner cities through the power of data and technology.
+            </p>
+            <div class="team-socials">
+              <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member 2 -->
+        <div class="team-card">
+          <div class="card-image">
+            <img
+              src="https://d1v0ynld5x949x.cloudfront.net/Images/27546/10510371_image.jpg"
+              alt="AI image"
+            />
+          </div>
+          <div class="card-info">
+            <h3>Nitin Agrawal</h3>
+            <p class="role">CTO (Chief Technology Officer)</p>
+            <p class="bio">
+              Tech innovator and IoT expert, leading the development of
+              sensor-based smart solutions to optimize waste management systems.
+            </p>
+            <div class="team-socials">
+              <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Member 3 -->
+        <div class="team-card">
+          <div class="card-image">
+            <img
+              src="https://img.freepik.com/premium-photo/professional-indian-female-headshots-business-corporate-women_203363-204.jpg"
+              alt="AI image"
+            />
+          </div>
+          <div class="card-info">
+            <h3>Priyanka Gupta</h3>
+            <p class="role">Head of Operations</p>
+            <p class="bio">
+              Skilled strategist with 10+ years in urban infrastructure
+              projects, ensuring smooth deployment and efficient scaling of
+              smart bin networks.
+            </p>
+            <div class="team-socials">
+              <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="FAQ" class="faq-section">
+      <div class="container">
+        <h2 class="faq-title">❓ Frequently Asked Questions</h2>
+        <p class="faq-subtitle">
+          Everything you need to know about our Smart Waste Bin Tracker system.
+        </p>
+
+        <div class="faq-container">
+          <!-- FAQ Item -->
+          <div class="faq-item">
+            <button class="faq-question">
+              ♻️ What is EcoVision and how does it work?
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                EcoVision is a smart waste management system that uses IoT
+                sensors to monitor the fill levels of waste bins in real time.
+                The data is displayed on a live dashboard, allowing staff to
+                track, manage, and optimize waste collection efficiently.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item -->
+          <div class="faq-item">
+            <button class="faq-question">
+              🌱 Why should I use EcoVision instead of traditional waste
+              management?
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Traditional waste management often leads to overflowing bins or
+                unnecessary emptying of half-filled bins. EcoVision helps reduce
+                costs, improves cleanliness, prevents overflow, and supports
+                sustainability by optimizing collection schedules.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item -->
+          <div class="faq-item">
+            <button class="faq-question">
+              🔔 Can EcoVision send alerts when a bin is about to overflow?
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Yes ✅ EcoVision is designed to send real-time notifications
+                when any bin reaches its set threshold. This ensures that bins
+                are emptied on time, avoiding overflow and maintaining hygiene.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item -->
+          <div class="faq-item">
+            <button class="faq-question">
+              🌍 Is EcoVision suitable for schools, offices, or city-wide use?
+              <span class="icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Absolutely! EcoVision is scalable and flexible. Whether it’s a
+                campus, corporate office, shopping mall, or an entire smart city
+                project, EcoVision can be adapted to meet the waste management
+                needs of any environment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ UPDATED: Contact Section -->
+    <section id="contact" class="fade-in">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="contact-container">
+        <div class="contact-details">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>123 Green Street, Eco City, India</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <p>+91 92584 91284</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <p>contact@ecovision.com</p>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="https://www.instagram.com/" aria-label="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://www.facebook.com/" aria-label="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.whatsapp.com/" aria-label="WhatsApp"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <a href="/terms" class="tnc">Terms and Conditions</a>
+      <p>EcoVision &copy; 2025 | All Rights Reserved</p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop">&#8679;</button>
+
+    <!-- JavaScript -->
+    <script>
+      // Back to Top Button
+      const backToTop = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        backToTop.style.display = window.scrollY > 200 ? "block" : "none";
+      });
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Fade-in Animation on Scroll
+      const faders = document.querySelectorAll(".fade-in");
+      const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+      const appearOnScroll = new IntersectionObserver(function (
+        entries,
+        observer
+      ) {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      appearOptions);
+      faders.forEach((fade) => {
+        appearOnScroll.observe(fade);
+      });
+
+      // Smooth Scroll for Nav Links (Updated to handle all links)
+      document.querySelectorAll(".nav-links a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+
+      // --- Interactive Features Section Logic ---
+const featureItems = document.querySelectorAll('.feature-item');
+const featureImage = document.getElementById('feature-image');
+
+// Keep track of the currently active item to prevent re-animating
+let activeItem = document.querySelector('.feature-item.active');
+
+featureItems.forEach(item => {
+    item.addEventListener('mouseover', () => {
+        // Agar mouse pehle se active item par hai, toh kuch na karein
+        if (item === activeItem) {
+            return;
+        }
+
+        // Active class ko manage karein
+        if(activeItem) {
+            activeItem.classList.remove('active');
+        }
+        item.classList.add('active');
+        activeItem = item;
+
+        // Nayi image ka source prapt karein
+        const newImageSrc = item.dataset.image;
+
+        // 1. Pehle purani image ko fade-out karein
+        featureImage.style.opacity = '0';
+
+        // 2. Fade-out animation ke baad image badlein aur fade-in karein
+        // Yeh timeout CSS ke transition duration se match hona chahiye (e.g., 400ms)
+        setTimeout(() => {
+            featureImage.src = newImageSrc;
+            // 3. Nayi image ko fade-in karein
+            featureImage.style.opacity = '1';
+        }, 400); 
+    });
+});
+
+    </script>
+
+    <!-- FAQ JavaScript -->
+    <script>
+      const faqs = document.querySelectorAll(".faq-question");
+      faqs.forEach((faq) => {
+        faq.addEventListener("click", () => {
+          const parent = faq.parentElement;
+          parent.classList.toggle("active");
+
+          // Close others
+          document.querySelectorAll(".faq-item").forEach((item) => {
+            if (item !== parent) item.classList.remove("active");
+          });
+        });
+      });
+    </script>
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1200,
+        once: true,
+      });
+    </script>
+  </body>
+</html>

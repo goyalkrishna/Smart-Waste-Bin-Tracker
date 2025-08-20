@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service</title>
+    <link rel="stylesheet" href="/css/terms.css" />
+  </head>
+  <body>
+    <!-- Scroll Progress Bar -->
+    <div id="progress-container">
+      <div id="progress-bar"></div>
+    </div>
+
+    <!-- Particle Background -->
+    <div class="ocean-container">
+      <div
+        class="particle"
+        style="top: 20%; left: 10%; animation-delay: 0s"
+      ></div>
+      <div
+        class="particle"
+        style="top: 40%; left: 70%; animation-delay: 2s"
+      ></div>
+      <div
+        class="particle"
+        style="top: 60%; left: 30%; animation-delay: 4s"
+      ></div>
+      <div
+        class="particle"
+        style="top: 80%; left: 50%; animation-delay: 6s"
+      ></div>
+      <div
+        class="particle"
+        style="top: 25%; left: 80%; animation-delay: 1s"
+      ></div>
+      <div
+        class="particle"
+        style="top: 55%; left: 15%; animation-delay: 3s"
+      ></div>
+    </div>
+
+    <!-- Main Terms Container -->
+    <div class="terms-container">
+      <h1 class="fade-in">Terms of Service</h1>
+      <p class="last-updated fade-in">Last Updated: August 15, 2025</p>
+
+      <section class="fade-in delay-1">
+        <h2>1. Introduction</h2>
+        <p>
+          Welcome to our platform. By using our services, you agree to these
+          terms and conditions. Please read them carefully.
+        </p>
+      </section>
+
+      <section class="fade-in delay-2">
+        <h2>2. User Responsibilities</h2>
+        <p>
+          You agree to use our services only for lawful purposes and in a way
+          that does not infringe the rights of others or restrict their use.
+        </p>
+      </section>
+
+      <section class="fade-in delay-3">
+        <h2>3. Privacy Policy</h2>
+        <p>
+          Your privacy is important to us. Please review our Privacy Policy to
+          understand how we collect and use your information.
+        </p>
+      </section>
+
+      <section class="fade-in delay-4">
+        <h2>4. Limitation of Liability</h2>
+        <p>
+          We are not liable for any damages resulting from your use of our
+          platform, except as required by law.
+        </p>
+      </section>
+
+      <section class="fade-in delay-5">
+        <h2>5. Changes to Terms</h2>
+        <p>
+          We may update these terms from time to time. Continued use of our
+          services means you accept the new terms.
+        </p>
+      </section>
+
+      <a href="/" class="back-btn fade-in delay-6">Back to Home Page</a>
+    </div>
+
+    <script>
+      // Scroll Progress Bar Script
+      window.addEventListener("scroll", function () {
+        const scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / scrollHeight) * 100;
+        document.getElementById("progress-bar").style.width =
+          scrollPercent + "%";
+      });
+    </script>
+  </body>
+</html>

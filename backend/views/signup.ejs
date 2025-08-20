@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Waste Bin Tracker</title>
+    <link rel="stylesheet" href="/css/singup.css" />
+  </head>
+  <body>
+    <!-- Particle background container -->
+    <div class="ocean-container"></div>
+
+    <div class="signup-container">
+      <div class="brand-logo">EV</div>
+      <h1 class="signup-title">Create Account</h1>
+      <p class="signup-subtitle">Join us to access the Dashboard</p>
+
+      <form id="signupForm" action="/signup" method="POST">
+        <div class="form-group">
+          <input
+            type="text"
+            name="username"
+            class="form-input"
+            placeholder="Username"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            class="form-input"
+            placeholder="Email Address"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            name="password"
+            class="form-input"
+            placeholder="Password"
+            id="password"
+            required
+          />
+          <span class="toggle-password1" data-target="password">👁️</span>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            name="confirmPassword"
+            class="form-input"
+            placeholder="Confirm Password"
+            id="confirm-password"
+            required
+          />
+          <span class="toggle-password2" data-target="confirm-password">👁️</span>
+        </div>
+
+        <div class="remember-me">
+          <input type="checkbox" name="terms" required /> I agree to the
+          <a href="/terms" class="termsconditions">Terms & Conditions</a>
+        </div>
+
+        <button type="submit" class="signup-button">
+          <div class="button-content">
+            <div class="loading-spinner"></div>
+            <div class="success-check"></div>
+            <span class="button-text">Sign Up</span>
+          </div>
+        </button>
+
+        <div class="additional-options">
+          <p class="noaccount">Already have an account?</p>
+          <a href="/login" class="forgot-password">Login Here</a>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      // Toggle Password Visibility
+      const togglePasswords = document.querySelectorAll(".toggle-password1,.toggle-password2");
+
+      togglePasswords.forEach((eye) => {
+        eye.addEventListener("click", () => {
+          const targetId = eye.getAttribute("data-target");
+          const input = document.getElementById(targetId);
+
+          if (input.type === "password") {
+            input.type = "text";
+            eye.textContent = "🙈";
+          } else {
+            input.type = "password";
+            eye.textContent = "👁️";
+          }
+        });
+      });
+
+      // Particle system
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        const size = Math.random() * 4 + 1;
+        particle.style.width = size + "px";
+        particle.style.height = size + "px";
+        particle.style.left = Math.random() * window.innerWidth + "px";
+        particle.style.animationDelay = Math.random() * 2 + "s";
+        particle.style.animationDuration = Math.random() * 10 + 10 + "s";
+        const colors = ["#0ea5e9", "#06b6d4", "#8b5cf6", "#ff6f61"];
+        particle.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+        document.querySelector(".ocean-container").appendChild(particle);
+        setTimeout(() => {
+          if (particle.parentNode) particle.remove();
+        }, 15000);
+      }
+      setInterval(createParticle, 1500);
+      window.addEventListener("load", () => {
+        for (let i = 0; i < 10; i++) setTimeout(createParticle, i * 200);
+      });
+
+      // ✅ UPDATED: Signup form submission logic
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const button = this.querySelector(".signup-button");
+          const buttonText = button.querySelector(".button-text");
+          const spinner = button.querySelector(".loading-spinner");
+          const successCheck = button.querySelector(".success-check");
+
+          // --- 1. Start Loading State ---
+          buttonText.textContent = "Signing Up...";
+          spinner.style.display = "block";
+          successCheck.style.display = "none";
+          button.disabled = true;
+          button.style.background = "#475569"; // Loading color
+
+          const formData = {
+            username: this.username.value,
+            email: this.email.value,
+            password: this.password.value,
+            confirmPassword: this.confirmPassword.value,
+          };
+
+          try {
+            const response = await fetch("/signup", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+              // If response is not 2xx (e.g., 400 or 500), throw an error to be caught below
+              throw new Error(data.message || "Something went wrong");
+            }
+
+            // --- 2. Handle Success ---
+            spinner.style.display = "none";
+            successCheck.style.display = "block";
+            buttonText.textContent = "Welcome!";
+            button.style.background = "#10b981"; // Success color
+            showNotification(data.message, "success");
+
+            setTimeout(() => {
+              // Redirect to login page after successful signup
+              window.location.href = "/profile";
+            }, 2000);
+          } catch (err) {
+            // --- 3. Handle Any Error (Validation, Server, Network) ---
+            spinner.style.display = "none";
+            buttonText.textContent = "Sign Up";
+            button.style.background = "#ef4444"; // Error color (red)
+            showNotification(err.message, "error");
+
+            // Reset button after showing error
+            setTimeout(() => {
+              button.disabled = false;
+              button.style.background = "#064663"; // Original color
+            }, 2500);
+          }
+        });
+
+      // ✅ UPDATED: Notification system with success/error colors
+      function showNotification(message, type = "success") {
+        const notification = document.createElement("div");
+        const backgroundColor =
+          type === "success"
+            ? "rgba(16, 185, 129, 0.9)"
+            : "rgba(239, 68, 68, 0.9)"; // Green for success, Red for error
+
+        notification.style.cssText = `
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        background: ${backgroundColor};
+        backdrop-filter: blur(20px);
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        font-weight: 500;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        z-index: 1000;
+        transform: translateX(400px);
+        transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    `;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.style.transform = "translateX(0)";
+        }, 100);
+
+        setTimeout(() => {
+          notification.style.transform = "translateX(400px)";
+          setTimeout(() => notification.remove(), 500);
+        }, 4000); // Keep message on screen for 4 seconds
+      }
+    </script>
+  </body>
+</html>

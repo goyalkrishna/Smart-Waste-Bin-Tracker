@@ -1,0 +1,18 @@
+<h2>Dashboard</h2>
+<a href="/logout">Logout</a>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Fill Level</th>
+  </tr>
+  <% bins.forEach(bin => { %>
+  <tr>
+    <td><%= bin.name %></td>
+    <td><%= bin.location %></td>
+    <td style="color: <%= bin.fillLevel >= 80 ? 'red' : 'black' %>">
+      <%= bin.fillLevel %>%
+    </td>
+  </tr>
+  <% }) %>
+</table>

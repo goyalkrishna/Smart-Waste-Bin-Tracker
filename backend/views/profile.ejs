@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/css/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- All modals are now correctly hidden with inline styles -->
+
+    <!-- Reporting damage pop up -->
+    <div id="reportDamageModal" class="modal-overlay" style="display: none">
+      <div class="modal-content">
+        <form id="reportDamageForm">
+          <h2>
+            <i class="fas fa-exclamation-triangle"></i> Report Damaged Bin
+          </h2>
+          <div id="report-error-message" class="error-message hidden"></div>
+          <!-- ✅ ADD THIS NEW BLOCK -->
+          <div class="form-group">
+            <label for="reportUsername">Reporting As</label>
+            <input
+              type="text"
+              id="reportUsername"
+              name="username"
+              value="<%= user.username %>"
+              readonly
+            />
+          </div>
+          <div class="form-group">
+            <label for="reportBinId">Select Bin ID</label>
+            <select id="reportBinId" name="binId" required>
+              <option value="" disabled selected>Loading bins...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="reportLocation">Location (Auto-filled)</label>
+            <input type="text" id="reportLocation" name="location" readonly />
+          </div>
+          <div class="form-group">
+            <label for="reportDescription">Describe the Damage</label>
+            <textarea
+              id="reportDescription"
+              name="description"
+              rows="4"
+              placeholder="e.g., The lid is broken, bin is cracked..."
+              required
+            ></textarea>
+          </div>
+          <div class="modal-actions">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="cancelReportBtn"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" id="submitReportBtn">
+              <span class="btn-text">Submit Report</span>
+              <div class="spinner"></div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ✅ REQUEST SUPPLIES MODAL -->
+    <div id="requestSuppliesModal" class="modal-overlay" style="display: none">
+      <div class="modal-content">
+        <form id="requestSuppliesForm">
+          <h2><i class="fas fa-box"></i> Request Supplies</h2>
+          <div id="request-error-message" class="error-message hidden"></div>
+
+          <div class="form-group">
+            <label>Requesting As</label>
+            <input type="text" value="<%= user.username %>" readonly />
+          </div>
+
+          <div class="form-group">
+            <label for="supplyType">Supply Type</label>
+            <select id="supplyType" name="supplyType" required>
+              <option value="" disabled selected>Select a supply...</option>
+              <option value="Bin Liners">Bin Liners</option>
+              <option value="Cleaning Solution">Cleaning Solution</option>
+              <option value="Gloves">Gloves</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              min="1"
+              placeholder="e.g., 5"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Additional Notes (Optional)</label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="3"
+              placeholder="Any specific details..."
+            ></textarea>
+          </div>
+
+          <div class="modal-actions">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="cancelRequestBtn"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" id="submitRequestBtn">
+              <span class="btn-text">Submit Request</span>
+              <div class="spinner"></div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="profile-container">
+      <aside class="user-info-card card">
+        <% if (user.avatar) { %>
+        <img src="<%= user.avatar %>" alt="User Avatar" class="avatar-image" />
+        <% } else { %>
+        <div class="avatar"><%= user.username.charAt(0).toUpperCase() %></div>
+        <% } %>
+        <h2><%= user.username %></h2>
+        <p class="email"><%= user.email %></p>
+        <% if (user.role === 'admin') { %>
+        <a href="/admin/dashboard" class="role-link admin-role">
+          <i class="fa-solid fa-user-shield"></i> Admin
+        </a>
+        <% } else { %>
+        <div class="role-link staff-role" onclick="showNotAdminMessage()">
+          <i class="fa-solid fa-user-shield"></i> Staff
+        </div>
+        <% } %>
+        <div class="joined-date">
+          <i class="fa-solid fa-calendar-alt"></i>
+          Joined <%= new Date(user.createdAt).toLocaleDateString('en-US', {
+          month: 'long', year: 'numeric' }) %>
+        </div>
+        <a href="/logout" class="btn btn-logout">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+      </aside>
+
+      <main class="settings-column">
+        <!-- Flash Messages -->
+        <% if (locals.error_msg && error_msg.length > 0) { %>
+        <div class="flash-message error"><%= error_msg %></div>
+        <% } %> <% if (locals.success_msg && success_msg.length > 0) { %>
+        <div class="flash-message success"><%= success_msg %></div>
+        <% } %>
+
+        <!-- Welcome Card -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Welcome to Your Dashboard!</h3>
+          </div>
+          <div class="overview-card">
+            <div class="stat-box">
+              <i class="fa-solid fa-trash-can"></i>
+              <h4 id="binsMonitoredStat"><%= stats.binsMonitored %></h4>
+              <p>Bins Monitored</p>
+            </div>
+            <div class="stat-box">
+              <i class="fa-solid fa-bell"></i>
+              <h4 id="activeAlertsStat"><%= stats.activeAlerts %></h4>
+              <p>Active Alerts</p>
+            </div>
+            <div class="stat-box">
+              <i class="fa-solid fa-check-double"></i>
+              <h4 id="binsEmptiedStat"><%= stats.binsEmptied %></h4>
+              <p>Bins Emptied</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Bin Status Card -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Live Bin Status</h3>
+          </div>
+          <div id="bin-container" class="bin-container">
+            <div class="loader"></div>
+          </div>
+        </div>
+
+        <!-- ✅ RESTORED: Recent Activity -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Recent Activity</h3>
+          </div>
+          <ul class="activity-list">
+            <% if (activities && activities.length > 0) { %> <%
+            activities.forEach(activity => { %>
+            <li class="activity-item">
+              <div class="activity-icon <%= activity.type %>">
+                <i class="<%= activity.icon %>"></i>
+              </div>
+              <div class="activity-details">
+                <p><%- activity.message %></p>
+                <span class="timestamp"><%= activity.time %></span>
+              </div>
+            </li>
+            <% }) %> <% } else { %>
+            <li class="activity-item">
+              <p>No recent activity</p>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+
+        <!-- ✅ RESTORED: My Assignments -->
+        <div class="card">
+          <div class="card-header">
+            <h3>My Assignments</h3>
+          </div>
+          <ul class="assignments-list">
+            <% assignments.forEach(bin => { %>
+            <li class="assignment-item">
+              <div class="assignment-info">
+                <p><%= bin.id %></p>
+                <span><%= bin.location %></span>
+              </div>
+              <div class="status-indicator status-<%= bin.status %>">
+                <%= bin.level %>% Full
+              </div>
+            </li>
+            <% }) %>
+          </ul>
+        </div>
+
+        <!-- ✅ RESTORED: Performance Analytics -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Performance This Week (Bins Emptied)</h3>
+          </div>
+          <div class="analytics-chart-container">
+            <% analytics.weeklyEmptied.forEach(day => { %>
+            <div class="chart-bar-group">
+              <div
+                class="bar"
+                style="height: <%= (day.count / analytics.maxCount) * 100 %>%"
+              >
+                <span class="tooltip"><%= day.count %> Bins</span>
+              </div>
+              <span class="bar-label"><%= day.day %></span>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Quick Actions</h3>
+          </div>
+          <div class="quick-actions-grid">
+            <a href="#" class="action-btn" id="report-damage-btn">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>Report Damage</span>
+            </a>
+            <a href="#" class="action-btn" id="request-supplies-btn">
+              <i class="fa-solid fa-box"></i>
+              <span>Request Supplies</span>
+            </a>
+            <a href="/map" class="action-btn">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <span>View Full Map</span>
+            </a>
+            <button type="button" id="generateReportBtn" class="action-btn">
+              <i class="fa-solid fa-file-lines"></i>
+              <span>Generate Report</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ✅ RESTORED: Edit Profile -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Edit Profile</h3>
+          </div>
+          <form
+            action="/profile/update"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="form-input"
+                value="<%= user.username %>"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                value="<%= user.email %>"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="avatar">Update Profile Picture</label>
+              <input type="file" id="avatar" name="avatar" class="form-input" />
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+        </div>
+
+        <!-- ✅ RESTORED: Change Password -->
+        <div class="card">
+          <div class="card-header"><h3>Change Password</h3></div>
+          <form action="/profile/password" method="POST">
+            <div class="form-group">
+              <label for="currentPassword">Current Password</label>
+              <input
+                type="password"
+                id="currentPassword"
+                name="currentPassword"
+                class="form-input"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="newPassword">New Password</label>
+              <input
+                type="password"
+                id="newPassword"
+                name="newPassword"
+                class="form-input"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm New Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                class="form-input"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Update Password
+            </button>
+          </form>
+        </div>
+
+        <!-- ✅ RESTORED: Settings -->
+        <div class="card">
+          <div class="card-header"><h3>Settings</h3></div>
+          <div class="settings-item">
+            <p>Receive email alerts for full bins</p>
+            <label class="toggle-switch">
+              <input type="checkbox" name="emailAlerts" <%=
+              user.settings?.emailAlerts ? 'checked' : '' %>>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="settings-item">
+            <p>Enable push notifications</p>
+            <label class="toggle-switch">
+              <input type="checkbox" name="pushNotifications" <%=
+              user.settings?.pushNotifications ? 'checked' : '' %>>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Danger Zone Card -->
+        <div class="card danger-zone">
+          <div class="card-header"><h3>Danger Zone</h3></div>
+          <p>
+            Deleting your account is permanent. You will be asked to confirm
+            your password.
+          </p>
+          <button type="button" id="deleteAccountBtn" class="btn btn-danger">
+            Delete My Account
+          </button>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="deleteModal" class="modal-overlay" style="display: none">
+          <div class="modal-content">
+            <h3>Confirm Account Deletion</h3>
+            <p>
+              This action cannot be undone. Please enter your password to
+              permanently delete your account.
+            </p>
+            <form action="/profile/delete" method="POST">
+              <div class="form-group">
+                <label for="deletePassword">Password</label>
+                <input
+                  type="password"
+                  id="deletePassword"
+                  name="password"
+                  class="form-input"
+                  required
+                />
+              </div>
+              <div class="modal-actions">
+                <button
+                  type="button"
+                  id="cancelDeleteBtn"
+                  class="btn btn-secondary"
+                >
+                  Cancel
+                </button>
+                <button type="submit" class="btn btn-danger">
+                  Confirm & Delete
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- AI Report Modal -->
+        <div id="reportModal" class="modal-overlay" style="display: none">
+          <div class="modal-content">
+            <h3>AI-Generated Status Report</h3>
+            <div id="reportContent" class="report-content">
+              <!-- AI summary will load here -->
+            </div>
+            <div class="modal-actions">
+              <button
+                type="button"
+                id="closeReportBtn"
+                class="btn btn-secondary"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <style>
+      .avatar-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 20px;
+        display: block;
+        box-shadow: 0 0 0 4px var(--surface-color),
+          0 0 0 8px var(--primary-color);
+      }
+    </style>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- GLOBAL VARIABLES ---
+        let liveBinData = []; // Stores real-time bin data for reuse
+
+        // --- MODAL ELEMENTS ---
+        const deleteModal = document.getElementById("deleteModal");
+        const openDeleteBtn = document.getElementById("deleteAccountBtn");
+        const closeDeleteBtn = document.getElementById("cancelDeleteBtn");
+
+        const aiReportModal = document.getElementById("reportModal");
+        const openAiReportBtn = document.getElementById("generateReportBtn");
+        const closeAiReportBtn = document.getElementById("closeReportBtn");
+        const reportContent = document.getElementById("reportContent");
+
+        const reportDamageModal = document.getElementById("reportDamageModal");
+        const openReportDamageBtn =
+          document.getElementById("report-damage-btn");
+        const cancelReportBtn = document.getElementById("cancelReportBtn");
+        const reportForm = document.getElementById("reportDamageForm"); // This is the form itself
+
+        const requestSuppliesModal = document.getElementById(
+          "requestSuppliesModal"
+        );
+        const openRequestBtn = document.getElementById("request-supplies-btn");
+        const cancelRequestBtn = document.getElementById("cancelRequestBtn");
+        const requestForm = document.getElementById("requestSuppliesForm");
+
+        // --- DELETE ACCOUNT MODAL LOGIC ---
+        openDeleteBtn.addEventListener("click", () => {
+          deleteModal.style.display = "flex";
+        });
+        closeDeleteBtn.addEventListener("click", () => {
+          deleteModal.style.display = "none";
+        });
+
+        // --- AI REPORT MODAL LOGIC ---
+        openAiReportBtn.addEventListener("click", async () => {
+          aiReportModal.style.display = "flex";
+          reportContent.innerHTML =
+            '<div class="loader"></div><p style="text-align:center;">Generating summary...</p>';
+          try {
+            const response = await fetch("/api/generate-summary", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ bins: liveBinData }),
+            });
+            const data = await response.json();
+            reportContent.innerHTML = data.summary;
+          } catch (error) {
+            reportContent.innerHTML =
+              "<p>Could not generate the report. Please try again.</p>";
+          }
+        });
+        closeAiReportBtn.addEventListener("click", () => {
+          aiReportModal.style.display = "none";
+        });
+
+        // --- REPORT DAMAGE MODAL LOGIC ---
+        const binSelect = document.getElementById("reportBinId");
+        const locationInput = document.getElementById("reportLocation");
+
+        openReportDamageBtn.addEventListener("click", async () => {
+          reportDamageModal.style.display = "flex";
+          try {
+            const response = await fetch("/api/bins");
+            const allBinsData = await response.json();
+            binSelect.innerHTML =
+              '<option value="" disabled selected>Select a bin</option>';
+            allBinsData.forEach((bin) => {
+              const option = document.createElement("option");
+              option.value = bin.binId;
+              option.textContent = `${bin.binId} - (${bin.location})`;
+              binSelect.appendChild(option);
+            });
+            binSelect.addEventListener("change", () => {
+              const selectedBin = allBinsData.find(
+                (bin) => bin.binId === binSelect.value
+              );
+              if (selectedBin) {
+                locationInput.value = selectedBin.location;
+              }
+            });
+          } catch (error) {
+            binSelect.innerHTML =
+              '<option value="" disabled selected>Could not load bins</option>';
+          }
+        });
+
+        function closeReportModal() {
+          reportDamageModal.style.display = "none";
+          reportForm.reset();
+        }
+        cancelReportBtn.addEventListener("click", closeReportModal);
+
+        // ✅ THIS IS THE FIX: The missing submit logic for the form
+        reportForm.addEventListener("submit", async (e) => {
+          e.preventDefault(); // Prevent the form from reloading the page
+          const submitBtn = document.getElementById("submitReportBtn");
+          const errorDiv = document.getElementById("report-error-message");
+
+          submitBtn.classList.add("loading");
+          submitBtn.disabled = true;
+          errorDiv.classList.add("hidden");
+
+          const formData = new FormData(reportForm);
+          const data = {
+            binId: formData.get("binId"),
+            location: locationInput.value,
+            description: formData.get("description"),
+          };
+
+          try {
+            const response = await fetch("/api/report-damage", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+            const result = await response.json();
+            if (response.ok) {
+              closeReportModal();
+              alert("Report submitted successfully!");
+            } else {
+              errorDiv.textContent = result.message;
+              errorDiv.classList.remove("hidden");
+            }
+          } catch (error) {
+            errorDiv.textContent = "A network error occurred.";
+            errorDiv.classList.remove("hidden");
+          } finally {
+            submitBtn.classList.remove("loading");
+            submitBtn.disabled = false;
+          }
+        });
+
+        // --- SUPPLY REQUEST MODAL LOGIC ---
+        openRequestBtn.addEventListener("click", () => {
+          requestSuppliesModal.style.display = "flex";
+        });
+
+        function closeRequestModal() {
+          requestSuppliesModal.style.display = "none";
+          requestForm.reset();
+        }
+        cancelRequestBtn.addEventListener("click", closeRequestModal);
+
+        requestForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const submitBtn = document.getElementById("submitRequestBtn");
+          const errorDiv = document.getElementById("request-error-message");
+
+          submitBtn.classList.add("loading");
+          submitBtn.disabled = true;
+          errorDiv.classList.add("hidden");
+
+          const formData = new FormData(requestForm);
+          const data = Object.fromEntries(formData.entries());
+
+          try {
+            const response = await fetch("/api/request-supplies", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+            const result = await response.json();
+
+            if (response.ok) {
+              closeRequestModal();
+              alert("Request submitted successfully!");
+            } else {
+              errorDiv.textContent = result.message;
+              errorDiv.classList.remove("hidden");
+            }
+          } catch (error) {
+            errorDiv.textContent = "A network error occurred.";
+            errorDiv.classList.remove("hidden");
+          } finally {
+            submitBtn.classList.remove("loading");
+            submitBtn.disabled = false;
+          }
+        });
+
+        // --- UNIVERSAL: Close any modal if user clicks on the overlay ---
+        window.addEventListener("click", (event) => {
+          if (event.target === deleteModal) deleteModal.style.display = "none";
+          if (event.target === aiReportModal)
+            aiReportModal.style.display = "none";
+          if (event.target === reportDamageModal) closeReportModal();
+          if (event.target === requestSuppliesModal) closeRequestModal();
+        });
+
+        // --- REAL-TIME BIN & STATS FETCHER ---
+        async function fetchBinData() {
+          try {
+            const response = await fetch("/api/bins");
+            const bins = await response.json();
+            liveBinData = bins;
+            document.getElementById("binsMonitoredStat").innerText =
+              bins.length;
+            document.getElementById("activeAlertsStat").innerText = bins.filter(
+              (bin) => bin.fillLevel >= 80
+            ).length;
+            document.getElementById("binsEmptiedStat").innerText = bins.filter(
+              (bin) => bin.fillLevel < 30
+            ).length;
+            const binContainer = document.getElementById("bin-container");
+            binContainer.innerHTML = "";
+            bins.forEach((bin) => {
+              const binElement = document.createElement("div");
+              binElement.className = "bin-visual-card";
+              const colorClass =
+                bin.fillLevel >= 80
+                  ? "status-red"
+                  : bin.fillLevel >= 30
+                  ? "status-yellow"
+                  : "status-green";
+              binElement.innerHTML = `
+            <div class="bin-details">
+                <p class="bin-id">${bin.binId}</p>
+                <span class="bin-location">${bin.location}</span>
+            </div>
+            <div class="bin-lid"></div>
+            <div class="bin-body">
+                <div class="bin-fill ${colorClass}" style="height: ${bin.fillLevel}%;">
+                    <div class="wave"></div>
+                </div>
+            </div>
+            <div class="bin-level-text ${colorClass}">
+                ${bin.fillLevel}% Full
+            </div>
+          `;
+              binContainer.appendChild(binElement);
+            });
+          } catch (error) {
+            console.error("Failed to fetch bin data:", error);
+          }
+        }
+        fetchBinData();
+        setInterval(fetchBinData, 2500);
+      });
+
+      // --- OTHER GLOBAL FUNCTIONS ---
+      function showNotAdminMessage() {
+        const notification = document.createElement("div");
+        notification.className = "admin-notification";
+        notification.textContent = "Access Denied: You are not an admin.";
+        document.body.appendChild(notification);
+        setTimeout(() => {
+          notification.remove();
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>

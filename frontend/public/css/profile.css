@@ -1,0 +1,1274 @@
+/* --- Google Font & Global Styles --- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #0ea5e9; /* Sky Blue */
+  --primary-dark: #0284c7;
+  --background-color: #f0f4f8; /* Lighter, softer background */
+  --surface-color: #ffffff;
+  --text-color: #1e293b; /* Darker text for better contrast */
+  --text-light: #64748b;
+  --border-color: #e2e8f0;
+  --danger-color: #ef4444;
+  --success-color: #10b981;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(90deg, #8ecae6, #b5e48c, #ffd6a5);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* --- Main Profile Layout --- */
+.profile-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 320px 1fr; /* Sidebar and main content */
+  gap: 30px;
+  align-items: start;
+}
+
+/* --- General Card Styling --- */
+.card {
+  background-color: var(--surface-color);
+  border-radius: 16px;
+  padding: 25px 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.card-header {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* --- User Info Card (Left Column) --- */
+.user-info-card {
+  text-align: center;
+  position: sticky; /* Makes sidebar stick on scroll */
+  top: 40px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-dark)
+  );
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 0 4px var(--surface-color), 0 0 0 8px var(--primary-color);
+}
+
+.avatar-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  display: block;
+  box-shadow: 0 0 0 4px var(--surface-color), 0 0 0 8px var(--primary-color);
+}
+
+.user-info-card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 5px;
+}
+
+.user-info-card .email {
+  color: var(--text-light);
+  margin-bottom: 20px;
+  word-wrap: break-word;
+}
+
+.user-info-card .role,
+.user-info-card .joined-date {
+  font-size: 0.9rem;
+  padding: 6px 15px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.user-info-card .role {
+  background-color: #e0f2fe;
+  color: #0ea5e9;
+}
+
+.user-info-card .joined-date {
+  background-color: #f1f5f9;
+  color: var(--text-light);
+}
+
+/* --- Settings Cards (Right Column) --- */
+.settings-column .card:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+/* Overview Stats */
+.overview-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.stat-box {
+  background-color: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.stat-box:hover {
+  transform: scale(1.05);
+  background-color: var(--surface-color);
+}
+.stat-box i {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+.stat-box h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.stat-box p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* Recent Activity */
+.activity-list {
+  list-style-type: none;
+}
+.activity-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 5px;
+  border-radius: 8px; /* Add border-radius */
+  transition: background-color 0.2s ease; /* Add transition */
+}
+.activity-item:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.activity-item:hover {
+  background-color: #e0fbd2; /* Use the light green background color */
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 1rem;
+}
+.activity-icon.icon-login {
+  background-color: #e0f2fe;
+  color: #0ea5e9;
+}
+.activity-icon.icon-password {
+  background-color: #fef3c7;
+  color: #f59e0b;
+}
+.activity-icon.icon-profile {
+  background-color: #dcfce7;
+  color: #22c55e;
+}
+.activity-details p {
+  font-weight: 500;
+  margin: 0;
+}
+.activity-details .timestamp {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: #f8fafc;
+  font-size: 1rem;
+  color: var(--text-color);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(6, 70, 99, 0.15);
+}
+
+.btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 111, 97, 0.3);
+  color: #fff; /* Ensure text color stays white */
+}
+
+/* Settings & Toggle Switch */
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+.settings-item p {
+  font-weight: 500;
+  margin: 0;
+}
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 28px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: var(--success-color);
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* Danger Zone */
+.danger-zone {
+  border-color: var(--danger-color);
+}
+.danger-zone .card-header h3 {
+  color: var(--danger-color);
+}
+.danger-zone p {
+  color: var(--text-light);
+  margin-bottom: 20px;
+  text-align: left;
+}
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+.btn-danger:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+.btn-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 15px;
+  padding: 8px;
+  background-color: transparent; /* No background */
+  border: none; /* No border */
+  color: var(--text-light); /* Softer, less prominent color */
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-logout:hover {
+  background-color: #ff7262; /* A very light shade of the accent color */
+  color: var(--accent-color); /* Use the main accent color on hover */
+  transform: none; /* Remove the jarring translateY */
+  box-shadow: none; /* Remove the shadow */
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+  }
+  .user-info-card {
+    position: static; /* Remove sticky behavior on mobile */
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    padding: 20px;
+  }
+  .profile-container {
+    padding: 20px 10px;
+  }
+  .overview-card {
+    grid-template-columns: 1fr 1fr; /* Two stats per row on small screens */
+  }
+}
+
+/* Add to the end of your file */
+.settings-column .card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardFadeIn 0.5s ease-out forwards;
+}
+
+/* Stagger the animation for each card */
+.settings-column .card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.settings-column .card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.settings-column .card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.settings-column .card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.settings-column .card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.settings-column .card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- ADD THIS AT THE END OF THE FILE --- */
+
+/* My Assignments Card */
+.assignments-list {
+  list-style-type: none;
+  margin-top: -10px; /* Counteract padding on first item */
+}
+.assignment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5px;
+}
+.assignment-item:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+}
+.assignment-info p {
+  font-weight: 500;
+  margin: 0;
+}
+.assignment-info span {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+.status-indicator.status-full {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+.status-indicator.status-ok {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+/* Performance Analytics Card */
+.analytics-chart-container {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end; /* This is still correct */
+  gap: 10px;
+  padding: 20px 10px 0;
+  border-top: 1px solid var(--border-color);
+  margin-top: 20px;
+}
+
+.chart-bar-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end; /* ✅ THIS IS THE KEY FIX */
+}
+
+.bar {
+  width: 70%;
+  max-width: 35px;
+  background: linear-gradient(to top, var(--primary-color), #8ecae6);
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  transition: height 0.5s ease-out;
+}
+
+.bar-label {
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.bar .tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-dark);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.bar:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Quick Actions Card */
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 10px;
+  background-color: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+.action-btn i {
+  font-size: 1.5rem;
+}
+.action-btn:hover {
+  transform: translateY(-3px);
+  background-color: #e6f0f3;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* --- ADD THIS TO THE END of profile.css --- */
+
+/* Modal Styles */
+.modal-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 450px;
+  animation: slideIn 0.4s ease-out;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: var(--danger-color);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: var(--text-color);
+}
+.btn-secondary:hover {
+  background-color: #cbd5e1;
+}
+
+/* Modal Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --- ADD THIS TO THE END of profile.css --- */
+
+/* Flash Messages */
+.flash-message {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid transparent;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.flash-message.error {
+  background-color: #fee2e2; /* Light red */
+  color: #b91c1c; /* Dark red */
+  border-color: #fecaca;
+}
+
+/* We'll add this for success messages later */
+.flash-message.success {
+  background-color: #dcfce7; /* Light green */
+  color: #166534; /* Dark green */
+  border-color: #bbf7d0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- ADD THIS TO THE END of profile.css --- */
+
+/* Bin Tracker Styles */
+.bin-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.bin-card {
+  background-color: var(--background-color);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px 15px;
+}
+
+.bin-info .bin-id {
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.bin-info .bin-location {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.bin-level-bar {
+  grid-column: 1 / -1; /* Span full width */
+  height: 12px;
+  background-color: #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bin-level-bar .fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s ease-in-out;
+}
+
+.bin-level-text {
+  font-weight: 700;
+  font-size: 1rem;
+  justify-self: end;
+}
+
+/* Status Colors */
+.status-green .fill {
+  background-color: #22c55e;
+}
+.status-green {
+  color: #166534;
+}
+
+.status-yellow .fill {
+  background-color: #f59e0b;
+}
+.status-yellow {
+  color: #78350f;
+}
+
+.status-red .fill {
+  background-color: #ef4444;
+}
+.status-red {
+  color: #991b1b;
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .bin-card {
+  background-color: #374151;
+}
+body.dark-mode .status-green {
+  color: #6ee7b7;
+}
+body.dark-mode .status-yellow {
+  color: #fcd34d;
+}
+body.dark-mode .status-red {
+  color: #fca5a5;
+}
+
+/* Loader for initial load */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- ADD THIS TO THE END of profile.css --- */
+
+/* Bin Tracker Styles (New Animated Version) */
+.bin-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+}
+
+.bin-visual-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.bin-details {
+  text-align: center;
+}
+
+.bin-details .bin-id {
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+}
+
+.bin-details .bin-location {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.bin-body {
+  width: 80px;
+  height: 110px; /* Thodi height kam ki */
+  background-color: #e2e8f0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column-reverse; /* Fill neeche se upar aayega */
+  /* ✅ YEH LINE DUSTBIN KA SHAPE BANAYEGI */
+  clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+  margin-top: 5px; /* Lid ke liye jagah */
+}
+
+/* ✅ NEW: Lid (dhakkan) ke liye style */
+.bin-lid {
+  width: 90px; /* Body se thoda chauda */
+  height: 10px;
+  background-color: #94a3b8;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+}
+
+.bin-lid::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 5px;
+  background-color: #64748b;
+  border-radius: 3px 3px 0 0;
+}
+
+.bin-fill {
+  width: 100%;
+  transition: height 1s cubic-bezier(0.65, 0, 0.35, 1); /* Smooth animation */
+  position: relative;
+  overflow: hidden;
+}
+
+.bin-level-text {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Status Colors */
+.bin-fill.status-green {
+  background-color: #22c55e;
+}
+.bin-level-text.status-green {
+  color: #166534;
+}
+
+.bin-fill.status-yellow {
+  background-color: #f59e0b;
+}
+.bin-level-text.status-yellow {
+  color: #78350f;
+}
+
+.bin-fill.status-red {
+  background-color: #ef4444;
+}
+.bin-level-text.status-red {
+  color: #991b1b;
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .bin-body {
+  background-color: #374151;
+  border-color: #6b7280;
+}
+body.dark-mode .bin-level-text.status-green {
+  color: #6ee7b7;
+}
+body.dark-mode .bin-level-text.status-yellow {
+  color: #fcd34d;
+}
+body.dark-mode .bin-level-text.status-red {
+  color: #fca5a5;
+}
+
+/* Wavy Animation for Fill Effect */
+.wave {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1000% 1000% 0 0;
+  position: absolute;
+  width: 200%;
+  height: 12px;
+  animation: wave 3s -1s linear infinite;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  top: -5px;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(-50%);
+  }
+  50% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Loader (agar pehle se nahi hai) */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- ADD THIS to the end of profile.css --- */
+
+/* AI Report Modal Content */
+.report-content {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 12px;
+  min-height: 200px;
+  text-align: left;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+.report-content .loader {
+  margin: 20px auto;
+}
+
+.report-content p,
+.report-content ul {
+  margin-bottom: 10px;
+}
+
+.report-content ul {
+  padding-left: 20px;
+}
+
+/* --- Role Button aur Notification ke liye naye Styles --- */
+
+/* Dono (admin aur staff) buttons ke liye common style */
+.role-link {
+  font-size: 0.9rem;
+  padding: 6px 15px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.role-link:hover {
+  transform: scale(1.05);
+}
+
+/* Admin ke liye specific style */
+.admin-role {
+  background-color: #e0e7ff;
+  color: #4338ca;
+}
+
+/* Staff ke liye specific style */
+.staff-role {
+  background-color: #f1f5f9;
+  color: var(--text-light);
+}
+
+/* Pop-up Notification ka style */
+.admin-notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ef4444; /* Red color for error */
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  z-index: 1001;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% {
+    top: -50px;
+    opacity: 0;
+  }
+  20% {
+    top: 20px;
+    opacity: 1;
+  }
+  80% {
+    top: 20px;
+    opacity: 1;
+  }
+  100% {
+    top: -50px;
+    opacity: 0;
+  }
+}
+
+/* Add this to your profile.css file */
+
+/* --- Report Damage Modal --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+.modal-overlay:not(.hidden) .modal-content {
+  transform: scale(1);
+}
+.modal-content h2 {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.modal-content h2 i {
+  color: #f59e0b;
+} /* Warning color */
+
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-light);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1rem;
+}
+.form-group input:read-only {
+  background-color: var(--border-color-light);
+}
+.form-group textarea {
+  resize: vertical;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+/* You might need to define these button styles if they don't exist in profile.css */
+.btn-secondary {
+  background: var(--border-color);
+  color: var(--text-color);
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-primary {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Spinner for button */
+.btn-primary .spinner {
+  display: none;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 0.8s linear infinite;
+}
+.btn-primary.loading .spinner {
+  display: block;
+}
+.btn-primary.loading .btn-text {
+  display: none;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ✅ IMPROVED REPORT DAMAGE MODAL STYLING */
+
+/* --- Main Modal Styles (for both themes) --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--card-bg, #fff);
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid var(--border-color, #e5e7eb);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+.modal-overlay:not(.hidden) .modal-content {
+  transform: scale(1);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-color, #111827);
+}
+.modal-content h2 i {
+  color: #f59e0b;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-light, #6b7280);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #d1d5db);
+  background: var(--bg-color, #fff);
+  color: var(--text-color, #111827);
+  font-size: 1rem;
+}
+
+/* --- ✅ NEW: Dark Mode Specific Styles --- */
+body.dark-mode .modal-content {
+  background: #1f2937; /* Dark card background */
+  border-color: #4b5563;
+}
+
+body.dark-mode .modal-content h2 {
+  color: #f9fafb; /* Light text color */
+}
+
+body.dark-mode .form-group label {
+  color: #9ca3af; /* Lighter gray for labels */
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+  background: #374151; /* Dark input background */
+  border-color: #6b7280;
+  color: #f9fafb; /* Light text color */
+}
+
+body.dark-mode .form-group input:read-only {
+  background-color: #4b5563;
+}
+
+/* ADD THIS TO THE END OF profile.css */
+
+/* --- ✅ Dark Mode Specific Styles for Modals --- */
+body.dark-mode .modal-content {
+  background: #1f2937; /* Dark card background */
+  border-color: #4b5563;
+}
+
+body.dark-mode .modal-content h2 {
+  color: #f9fafb; /* Light text color */
+}
+
+body.dark-mode .form-group label {
+  color: #9ca3af; /* Lighter gray for labels */
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+  background: #374151; /* Dark input background */
+  border-color: #6b7280;
+  color: #f9fafb; /* Light text color for typing */
+}
+
+body.dark-mode .form-group input:read-only {
+  background-color: #4b5563;
+}
